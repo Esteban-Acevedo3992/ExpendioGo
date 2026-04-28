@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - ExpendioGo</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+  <main class="login-page">
+    <section class="login-card">
+
+      <div class="logo-box">
+        <img src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo" class="logo">
+      </div>
+
+      <h1>Bienvenido a Expendio<span>Go</span></h1>
+
+      <p class="register-text">
+        ¿Nuevo aquí? <a href="{% url 'registro' %}">Crea una cuenta</a>
+      </p>
+
+      <form METHOD="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="nombre_cliente">Usuario</label>
+        <input type="text" id="nombre_cliente" name="nombre_cliente" placeholder="Ingresa tu nombre de usuario" required>
+
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" required>
+
+        <p class="forgot-text">
+          ¿Olvidaste tu contraseña? <a href="{% url 'recuperar' %}">Click aqui</a>
+        </p>
+
+        <div class="buttons">
+          <button type="button" class="btn salir">Salir</button>
+          <button type="submit" class="btn iniciar">Iniciar sesión</button>
+        </div>
+
+        {% if error %}
+          <p style="color: red; text-align: center;">{{ error }}</p>
+        {% endif %}
+      </form>
+
+    </section>
+  </main>
+
+</body>
+</html>

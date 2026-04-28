@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - ExpendioGo</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+  <main class="login-page">
+    <section class="login-card">
+
+      <div class="logo-box">
+        <img src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo" class="logo">
+      </div>
+
+      <h1>Crear Cuenta</h1>
+
+      <p class="register-text">
+        ¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión</a>
+      </p>
+
+      <form method="post" action="{% url 'registro' %}">
+        {% csrf_token %}
+        <label for="nombre_cliente">Nombre completo</label>
+        <input type="text" id="nombre_cliente" name="nombre_cliente" placeholder="Ingresa tu nombre completo" required>
+
+        <label for="numero_tel">Número de teléfono</label>
+        <input type="text" id="numero_tel" name="numero_tel" placeholder="Ingresa tu número de teléfono" required>
+
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" required>
+
+
+        <div class="buttons">
+          <button type="button" class="btn salir" onclick="window.location.href='{% url 'login' %}'">Salir</button>
+            <button type="submit" class="btn iniciar">Registrar</button>
+        </div>
+      </form>
+
+    </section>
+  </main>
+
+</body>
+</html>
