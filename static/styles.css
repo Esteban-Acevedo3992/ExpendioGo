@@ -5,6 +5,52 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.header {
+  width: 100%;
+  height: 90px;
+  background-color: #DD3B3B;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 60px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.header .left {
+   display: flex;
+  align-items: center; /* 👈 centra verticalmente texto con la imagen */
+  gap: 10px;
+}
+
+
+.logo-header {
+  width: 100px;  /* tamaño del logo */
+  height: auto;
+  margin-top: 10px; /* 👈 baja el oso */
+}
+
+.header h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: #4169e1;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  color: #ff0026;
+}
+
 body {
   min-height: 100vh;
 }
@@ -36,13 +82,15 @@ body {
 .logo-box {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .logo {
-  width: 95px;
+  width: 100px;   /* ajusta tamaño */
   height: auto;
 }
+
+
 
 h1 {
   font-size: 24px;
@@ -176,34 +224,31 @@ input {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sidebar a {
+  display: flex;
+  flex-direction: column;   /* icono arriba, texto abajo */
+  align-items: center;      /* centra horizontal */
+  justify-content: center;  /* centra vertical */
+  text-align: center;
+}
+
+.sidebar i {
+  font-size: 35px;
+}
+
+.sidebar i:hover {
+  color: #DD3B3B;
+}
+
 .content {
   flex: 1;
   padding: 30px;
-}
-
-.topbar {
-  background: white;
-  padding: 20px 25px;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.topbar h1 {
-  font-size: 26px;
-  margin: 0;
-}
-
-.topbar button {
-  border: none;
-  background-color: #e53935;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
 }
 
 .cards {
@@ -273,4 +318,6 @@ input {
   .cards {
     grid-template-columns: 1fr;
   }
+
+  
 }

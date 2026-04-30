@@ -1,31 +1,47 @@
-<!DOCTYPE html>
+{% load static %}
+<!DOCTYPE html >
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel - ExpendioGo</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
+<header class="header">
+  <div class="logo-box">
+    <img src="{% static '_img/logo.png' %}" alt="Logo" class="logo-header">
+ </div>
+ <h1>ExpendioGo</h1>
+  <button class="logout-btn">Cerrar sesión</button>
+</header>
+
 <body>
 
   <div class="dashboard">
     <aside class="sidebar">
-      <h2>ExpendioGo</h2>
-
+      
       <nav>
-        <a href="#">Inicio</a>
-        <a href="#">Inventario</a>
-        <a href="#">Pedidos</a>
-        <a href="#">Finanzas</a>
-        <a href="#">Configuración</a>
+        <a href="/dashboard/" class="{% if request.path == '/dashboard/' %}activo{% endif %}">
+          <i class="fas fa-house" style="color: #DD3B3B;"></i> Inicio
+        </a>
+        <a href="/dashboard/" class="{% if request.path == '/inventory/' %}activo{% endif %}">
+          <i class="fas fa-box"></i> Inventario
+        </a>
+        <a href="/dashboard/" class="{% if request.path == '/orders/' %}activo{% endif %}">
+          <i class="fas fa-shopping-cart"></i> Pedidos
+        </a>
+        <a href="/dashboard/" class="{% if request.path == '/finances/' %}activo{% endif %}">
+          <i class="fas fa-money-bill"></i>  Finanzas
+        </a>
+        <a href="/dashboard/" class="{% if request.path == '/settings/' %}activo{% endif %}">
+          <i class="fas fa-cog"></i> Configuración
+        </a>
       </nav>
     </aside>
 
     <main class="content">
-      <header class="topbar">
-        <h1>Panel principal</h1>
-        <button>Cerrar sesión</button>
-      </header>
 
       <section class="cards">
         <div class="info-card">
