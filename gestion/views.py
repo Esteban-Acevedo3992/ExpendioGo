@@ -62,4 +62,11 @@ def recuperar(request):
     return render(request, 'recuperar.html', {'mensaje': mensaje})
 
 def dashboard(request):
-      return render(request, 'dashboard.html')
+    if 'cliente_id' not in request.session:
+        return redirect('login')
+    cliente = Cliente.objects.get(cliente_id=request.session['cliente_id'])
+    return render(request, 'dashboard.html', {'cliente': cliente})
+
+def logout(request):
+    request.session.flush()
+    return redirect('login')

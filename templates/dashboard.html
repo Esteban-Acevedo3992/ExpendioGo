@@ -14,7 +14,9 @@
     <img src="{% static '_img/logo.png' %}" alt="Logo" class="logo-header">
  </div>
  <h1>ExpendioGo</h1>
-  <button class="logout-btn">Cerrar sesión</button>
+  <button class="logout-btn" onclick="window.location.href='{% url 'logout' %}'">
+    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+    
 </header>
 
 <body>

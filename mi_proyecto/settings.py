@@ -73,23 +73,18 @@ WSGI_APPLICATION = 'mi_proyecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'expendiogo_db',            # Nombre de la base de datos
-#        'USER': 'postgres',                 # usuario maestro
-#        'PASSWORD': 'BanK3992tO35',         # contraseña PostgreSQL
-#        'HOST': 'localhost',
-#        'PORT': '5432',                     # Puerto para PostgreSQL
-#    }
-#}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'expendiogo_db',            # Nombre de la base de datos
+        'USER': 'postgres',                 # usuario maestro
+        'PASSWORD': 'BanK3992tO35',         # contraseña PostgreSQL
+        'HOST': 'localhost',
+        'PORT': '5432',                     # Puerto para PostgreSQL
     }
 }
+
+
 
 
 # Password validation
