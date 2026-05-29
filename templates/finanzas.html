@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpendioGo - Finanzas</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="page-note">Panel de control administrador (FINANZAS)</div>
+    <div class="app">
+        <header class="topbar">
+            <img class="logo" src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo">
+            <div class="brand">Expendio<span>Go</span></div>
+        </header>
+
+    
+        <aside class="sidebar">
+            <a class="nav-link" href="{% url 'dashboard' %}"><div class="icon-box">⌂</div><span class="label">Principal</span></a>
+            <a class="nav-link" href="{% url 'inventario' %}"><div class="icon-box">▰</div><span class="label">Inventario</span></a>
+            <a class="nav-link" href="{% url 'pedidos' %}"><div class="icon-box">🛒</div><span class="label">Pedidos</span></a>
+            <a class="nav-link active" href="{% url 'finanzas' %}"><div class="icon-box">$</div><span class="label">Finanzas</span></a>
+            <a class="nav-link" href="{% url 'configuracion' %}"><div class="icon-box">⚙</div><span class="label">Configuración</span></a>
+        </aside>
+
+        <main class="content">
+            <div class="table-actions">
+                <h1>Proveedores</h1>
+                <a href="#" class="btn">Agregar o modificar proveedor</a>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Frame</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Número telefónico</th>
+                        <th>Correo electrónico</th>
+                        <th>Dirección</th>
+                        <th>Empresa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="{% static '_img/BIMBOLOGO.png' %}" alt="Proveedor 1"></td>
+                        <td>Roberto</td>
+                        <td>Méndez</td>
+                        <td>55 1234 5678</td>
+                        <td>pedidos@proveedor.com</td>
+                        <td>Av. Industrial 45, Col. Vallejo</td>
+                        <td>Bimbo (Panadería)</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/COCACOLALOGO.png' %}" alt="Proveedor 2"></td>
+                        <td>Ana</td>
+                        <td>Guzmán</td>
+                        <td>55 8765 4321</td>
+                        <td>ventas@cocacola.com</td>
+                        <td>Calz. de Tlalpan 3000</td>
+                        <td>Coca-Cola (Bebidas)</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/LALALOGO.png' %}" alt="Proveedor 3"></td>
+                        <td>Carlos</td>
+                        <td>Ruiz</td>
+                        <td>55 5555 9988</td>
+                        <td>distribucion@lala.com.mx</td>
+                        <td>Eje 3 Norte 120</td>
+                        <td>Lala (Lácteos)</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/SABRITASLOGO.jpeg' %}" alt="Proveedor 4"></td>
+                        <td>Sofía</td>
+                        <td>López</td>
+                        <td>55 4433 2211</td>
+                        <td>contacto@sabritas.com</td>
+                        <td>Calle Naranjo 89</td>
+                        <td>Sabritas (Botanas)</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/ZORROLOGO.png' %}" alt="Proveedor 5"></td>
+                        <td>Javier</td>
+                        <td>Torres</td>
+                        <td>55 6677 8899</td>
+                        <td>mayoreo@abarrotes.com</td>
+                        <td>Central de Abastos Pasillo 3</td>
+                        <td>El Zorro (General)</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/MARINLELOGO.png' %}" alt="Proveedor 6"></td>
+                        <td>Araceli</td>
+                        <td>Flores</td>
+                        <td>55 5544 3322</td>
+                        <td>tupedido@marinela.com</td>
+                        <td>Calle Lunari 4</td>
+                        <td>Marinela (Panadería)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

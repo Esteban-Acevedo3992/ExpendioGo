@@ -1,81 +1,69 @@
 {% load static %}
-<!DOCTYPE html >
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel - ExpendioGo</title>
-  <link rel="stylesheet" href="{% static 'styles.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpendioGo - Principal</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
-
-<header class="header">
-  <div class="logo-box">
-    <img src="{% static '_img/logo.png' %}" alt="Logo" class="logo-header">
- </div>
- <h1>ExpendioGo</h1>
-  <button class="logout-btn" onclick="window.location.href='{% url 'logout' %}'">
-    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
-    
-</header>
-
 <body>
+    <div class="app">
+        <header class="topbar">
+            <img class="logo" src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo">
+            <div class="brand">Expendio<span>Go</span></div>
+        </header>
 
-  <div class="dashboard">
-    <aside class="sidebar">
-      
-      <nav>
-        <a href="/dashboard/" class="{% if request.path == '/dashboard/' %}activo{% endif %}">
-          <i class="fas fa-house" style="color: #DD3B3B;"></i> Inicio
-        </a>
-        <a href="/dashboard/" class="{% if request.path == '/inventory/' %}activo{% endif %}">
-          <i class="fas fa-box"></i> Inventario
-        </a>
-        <a href="/dashboard/" class="{% if request.path == '/orders/' %}activo{% endif %}">
-          <i class="fas fa-shopping-cart"></i> Pedidos
-        </a>
-        <a href="/dashboard/" class="{% if request.path == '/finances/' %}activo{% endif %}">
-          <i class="fas fa-money-bill"></i>  Finanzas
-        </a>
-        <a href="/dashboard/" class="{% if request.path == '/settings/' %}activo{% endif %}">
-          <i class="fas fa-cog"></i> Configuración
-        </a>
-      </nav>
-    </aside>
+        <aside class="sidebar">
+            <a class="nav-link active" href="{% url 'dashboard' %}"><div class="icon-box">⌂</div><span class="label">Principal</span></a>
+            <a class="nav-link" href="{% url 'inventario' %}"><div class="icon-box">▰</div><span class="label">Inventario</span></a>
+            <a class="nav-link" href="{% url 'pedidos' %}"><div class="icon-box">🛒</div><span class="label">Pedidos</span></a>
+            <a class="nav-link" href="{% url 'finanzas' %}"><div class="icon-box">$</div><span class="label">Finanzas</span></a>
+            <a class="nav-link" href="{% url 'configuracion' %}"><div class="icon-box">⚙</div><span class="label">Configuración</span></a>
+        </aside>
 
-    <main class="content">
+        <main class="content">
+            <section class="dashboard-cards">
+                <article class="card">
+                    <div class="card-title">Ventas del día</div>
+                    <div class="card-body">
+                        <div class="big-icon">💵</div>
+                        <div class="card-value">$ 720.50 MXN</div>
+                    </div>
+                </article>
 
-      <section class="cards">
-        <div class="info-card">
-          <h3>Ventas del día</h3>
-          <p>$720.50 MXN</p>
-        </div>
+                <article class="card">
+                    <div class="card-title">Pedidos pendientes</div>
+                    <div class="card-body">
+                        <div class="big-icon">🔔</div>
+                        <div class="card-value">¡5 pedidos!</div>
+                    </div>
+                </article>
 
-        <div class="info-card">
-          <h3>Pedidos pendientes</h3>
-          <p>5 pedidos</p>
-        </div>
+                <article class="card">
+                    <div class="card-title">Productos bajos</div>
+                    <div class="card-body">
+                        <div class="big-icon">⚠</div>
+                        <div class="card-text">3 productos por<br>agotarse</div>
+                    </div>
+                </article>
+            </section>
 
-        <div class="info-card">
-          <h3>Productos bajos</h3>
-          <p>3 productos</p>
-        </div>
-      </section>
-
-      <section class="chart-box">
-        <h2>Ventas de la semana</h2>
-
-        <div class="fake-chart">
-          <div style="height: 45%;"></div>
-          <div style="height: 65%;"></div>
-          <div style="height: 35%;"></div>
-          <div style="height: 55%;"></div>
-          <div style="height: 75%;"></div>
-          <div style="height: 90%;"></div>
-        </div>
-      </section>
-    </main>
-  </div>
-
+            <section class="chart-card">
+                <div class="chart-title">Ventas de la semana</div>
+                <div class="chart-placeholder">
+                    <div class="line-demo"></div>
+                    <div class="bar" style="height: 100px;"><span>Producto 1</span></div>
+                    <div class="bar" style="height: 118px;"><span>Producto 2</span></div>
+                    <div class="bar" style="height: 74px;"><span>Producto 3</span></div>
+                    <div class="bar" style="height: 100px;"><span>Producto 4</span></div>
+                    <div class="bar" style="height: 145px;"><span>Producto 5</span></div>
+                    <div class="bar" style="height: 165px;"><span>Producto 6</span></div>
+                    <div class="bar" style="height: 180px;"><span>Producto 7</span></div>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
 </html>

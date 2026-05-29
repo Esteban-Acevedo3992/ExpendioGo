@@ -1,0 +1,285 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpendioGo - Inventario</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <img class="logo" src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo">
+            <div class="brand">Expendio<span>Go</span></div>
+        </header>
+
+        <aside class="sidebar">
+            <a class="nav-link" href="{% url 'dashboard' %}"><div class="icon-box">⌂</div><span class="label">Principal</span></a>
+            <a class="nav-link active" href="{% url 'inventario' %}"><div class="icon-box">▰</div><span class="label">Inventario</span></a>
+            <a class="nav-link" href="{% url 'pedidos' %}"><div class="icon-box">🛒</div><span class="label">Pedidos</span></a>
+            <a class="nav-link" href="{% url 'finanzas' %}"><div class="icon-box">$</div><span class="label">Finanzas</span></a>
+            <a class="nav-link" href="{% url 'configuracion' %}"><div class="icon-box">⚙</div><span class="label">Configuración</span></a>
+        </aside>
+        
+        <main class="content">
+            <div class="table-actions">
+                <div>
+                    <h1>Inventario</h1>
+                </div>
+                <a href="#" class="btn">Modificar o agregar</a>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Cantidad en stock</th>
+                        <th>Precio compra</th>
+                        <th>Precio venta</th>
+                        <th>Proveedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="{% static '_img/Arroz.png' %}" alt="Arroz 1 kg"></td>
+                        <td>Arroz 1 kg</td>
+                        <td>Granos y semillas</td>
+                        <td>24</td>
+                        <td>$24.00</td>
+                        <td>$32.00</td>
+                        <td>Verde Valle</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/ChocoRoles.png' %}" alt="Choco Roles 160 g"></td>
+                        <td>Choco Roles 160 g</td>
+                        <td>Granos y semillas</td>
+                        <td>18</td>
+                        <td>$28.00</td>
+                        <td>$38.00</td>
+                        <td>Bimbo</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Rufles.png' %}" alt="Rufles de queso 45 g"></td>
+                        <td>Rufles de queso 45 g</td>
+                        <td>Básicos</td>
+                        <td>30</td>
+                        <td>$20.00</td>
+                        <td>$28.00</td>
+                        <td>Sabritas</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Pingüinos.png' %}" alt="Pingüinos 80 g"></td>
+                        <td>Pingüinos 80 g</td>
+                        <td>Básicos</td>
+                        <td>22</td>
+                        <td>$10.00</td>
+                        <td>$15.00</td>
+                        <td>Bimbo</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Sabritas.png' %}" alt="Sabritas Adobadas 160 g"></td>
+                        <td>Sabritas Adobadas 160 g</td>
+                        <td>Aceites</td>
+                        <td>14</td>
+                        <td>$34.00</td>
+                        <td>$46.00</td>
+                        <td>Sabritas</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Panmolido.png' %}" alt="Pan molido clasico 210 g"></td>
+                        <td>Pan molido clasico 210 g</td>
+                        <td>Harinas</td>
+                        <td>12</td>
+                        <td>$16.00</td>
+                        <td>$24.00</td>
+                        <td>Bimbo</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Roles.png' %}" alt="Roles canela 365 g"></td>
+                        <td>Roles canela 365 g</td>
+                        <td>Pastas</td>
+                        <td>28</td>
+                        <td>$8.00</td>
+                        <td>$13.00</td>
+                        <td>Bimbo</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Sopa instantánea.png' %}" alt="Sopa instantánea vaso"></td>
+                        <td>Sopa instantánea vaso</td>
+                        <td>Comida rápida</td>
+                        <td>35</td>
+                        <td>$9.00</td>
+                        <td>$15.00</td>
+                        <td>Maruchan</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/atun.png' %}" alt="Atún en agua 140 g"></td>
+                        <td>Atún en agua 140 g</td>
+                        <td>Enlatados</td>
+                        <td>20</td>
+                        <td>$16.00</td>
+                        <td>$24.00</td>
+                        <td>Dolores</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Pan.png' %}" alt="Pan tostado 210 g"></td>
+                        <td>Pan tostado 210 g</td>
+                        <td>Enlatados</td>
+                        <td>10</td>
+                        <td>$22.00</td>
+                        <td>$32.00</td>
+                        <td>Bimbo</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Submarinos.png' %}" alt="Submarinos 105 g"></td>
+                        <td>Submarinos 105 g</td>
+                        <td>Enlatados</td>
+                        <td>16</td>
+                        <td>$14.00</td>
+                        <td>$22.00</td>
+                        <td>Marinela</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Mayonesa.png' %}" alt="Mayonesa 390 g"></td>
+                        <td>Mayonesa 390 g</td>
+                        <td>Salsas y aderezos</td>
+                        <td>9</td>
+                        <td>$32.00</td>
+                        <td>$45.00</td>
+                        <td>McCormick</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Catsup.png' %}" alt="Catsup 320 g"></td>
+                        <td>Catsup 320 g</td>
+                        <td>Salsas y aderezos</td>
+                        <td>11</td>
+                        <td>$19.00</td>
+                        <td>$29.00</td>
+                        <td>Del Monte</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Café.png' %}" alt="Café soluble 120 g"></td>
+                        <td>Café soluble 120 g</td>
+                        <td>Bebidas</td>
+                        <td>8</td>
+                        <td>$58.00</td>
+                        <td>$75.00</td>
+                        <td>Nescafé</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Chocolate.png' %}" alt="Chocolate en polvo 400 g"></td>
+                        <td>Chocolate en polvo 400 g</td>
+                        <td>Bebidas</td>
+                        <td>13</td>
+                        <td>$36.00</td>
+                        <td>$48.00</td>
+                        <td>Choco</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Leche.png' %}" alt="Leche entera 1 L"></td>
+                        <td>Leche entera 1 L</td>
+                        <td>Lácteos</td>
+                        <td>25</td>
+                        <td>$21.00</td>
+                        <td>$28.00</td>
+                        <td>Lala</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Yogurt.png' %}" alt="Yogurt bebible 220 ml"></td>
+                        <td>Yogurt bebible 220 ml</td>
+                        <td>Lácteos</td>
+                        <td>17</td>
+                        <td>$10.00</td>
+                        <td>$16.00</td>
+                        <td>Alpura</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Refresco.png' %}" alt="Refresco cola 600 ml"></td>
+                        <td>Refresco cola 600 ml</td>
+                        <td>Bebidas</td>
+                        <td>40</td>
+                        <td>$12.00</td>
+                        <td>$18.00</td>
+                        <td>Coca-Cola</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Agua.png' %}"alt="Agua natural 1 L"></td>
+                        <td>Agua natural 1 L</td>
+                        <td>Bebidas</td>
+                        <td>36</td>
+                        <td>$7.00</td>
+                        <td>$12.00</td>
+                        <td>Epura</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Papas fritas.png' %}" alt="Papas fritas 45 g"></td>
+                        <td>Papas fritas 45 g</td>
+                        <td>Botanas</td>
+                        <td>26</td>
+                        <td>$10.00</td>
+                        <td>$16.00</td>
+                        <td>Sabritas</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Galletas saladas.png' %}" alt="Galletas saladas"></td>
+                        <td>Galletas saladas</td>
+                        <td>Galletas</td>
+                        <td>19</td>
+                        <td>$13.00</td>
+                        <td>$20.00</td>
+                        <td>Gamesa</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Pan blanco.png' %}" alt="Pan blanco grande"></td>
+                        <td>Pan blanco grande</td>
+                        <td>Panadería</td>
+                        <td>7</td>
+                        <td>$38.00</td>
+                        <td>$50.00</td>
+                        <td>Bimbo</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Takis.png' %}" alt="Takis fuego 200 g"></td>
+                        <td>Takis fuego 200 g</td>
+                        <td>Higiene</td>
+                        <td>15</td>
+                        <td>$18.00</td>
+                        <td>$28.00</td>
+                        <td>Takis</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Papel higiénico.png' %}" alt="Papel higiénico 4 rollos"></td>
+                        <td>Papel higiénico 4 rollos</td>
+                        <td>Higiene</td>
+                        <td>21</td>
+                        <td>$34.00</td>
+                        <td>$48.00</td>
+                        <td>Regio</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Detergente.png' %}" alt="Detergente en polvo 500 g"></td>
+                        <td>Detergente en polvo 500 g</td>
+                        <td>Limpieza</td>
+                        <td>12</td>
+                        <td>$22.00</td>
+                        <td>$33.00</td>
+                        <td>Ace</td>
+                    </tr>
+                    <tr>
+                        <td><img src="{% static '_img/Jabón.png' %}" alt="Jabón de barra"></td>
+                        <td>Jabón de barra</td>
+                        <td>Limpieza</td>
+                        <td>18</td>
+                        <td>$11.00</td>
+                        <td>$17.00</td>
+                        <td>Zote</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

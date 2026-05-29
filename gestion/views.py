@@ -70,3 +70,15 @@ def dashboard(request):
 def logout(request):
     request.session.flush()
     return redirect('login')
+
+def finanzas(request):
+    return render(request, 'finanzas.html')
+
+def pedidos(request):
+    return render(request, 'pedidos.html')
+
+def inventario(request):
+    return render(request, 'inventario.html')
+
+def configuracion(request):
+    return render(request, 'configuracion.html')

@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpendioGo - Configuración</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <img class="logo" src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo">
+            <div class="brand">Expendio<span>Go</span></div>
+        </header>
+
+        <aside class="sidebar">
+            <a class="nav-link" href="{% url 'dashboard' %}"><div class="icon-box">⌂</div><span class="label">Principal</span></a>
+            <a class="nav-link" href="{% url 'inventario' %}"><div class="icon-box">▰</div><span class="label">Inventario</span></a>
+            <a class="nav-link" href="{% url 'pedidos' %}"><div class="icon-box">🛒</div><span class="label">Pedidos</span></a>
+            <a class="nav-link" href="{% url 'finanzas' %}"><div class="icon-box">$</div><span class="label">Finanzas</span></a>
+            <a class="nav-link active" href="{% url 'configuracion' %}"><div class="icon-box">⚙</div><span class="label">Configuración</span></a>
+        </aside>
+
+        <main class="content">
+            <section class="config-cards">
+                <article class="card">
+                    <div class="card-title">Cambio de contraseña</div>
+                    <div class="card-body">
+                        <div class="big-icon">🔒</div>
+                        <div class="card-text">(Administrador)</div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-title">Datos del establecimiento</div>
+                    <div class="card-body">
+                        <div class="big-icon">📝</div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-title">Gestionar usuarios</div>
+                    <div class="card-body">
+                        <div class="big-icon">👤</div>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpendioGo - Pedidos</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <img class="logo" src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo">
+            <div class="brand">Expendio<span>Go</span></div>
+        </header>
+
+        <aside class="sidebar">
+            <a class="nav-link" href="{% url 'dashboard' %}"><div class="icon-box">⌂</div><span class="label">Principal</span></a>
+            <a class="nav-link" href="{% url 'inventario' %}"><div class="icon-box">▰</div><span class="label">Inventario</span></a>
+            <a class="nav-link active" href="{% url 'pedidos' %}"><div class="icon-box">🛒</div><span class="label">Pedidos</span></a>
+            <a class="nav-link" href="{% url 'finanzas' %}"><div class="icon-box">$</div><span class="label">Finanzas</span></a>
+            <a class="nav-link" href="{% url 'configuracion' %}"><div class="icon-box">⚙</div><span class="label">Configuración</span></a>
+        </aside>
+        
+        <main class="content">
+            <h1>Pedidos</h1>
+            <section class="orders-layout">
+                <div class="order-list">
+                    <article class="order-item">
+                        <div class="order-icon">🧺</div>
+                        <div>
+                            <div class="order-name">Pedido Bimbo - 11/feb.</div>
+                            <div class="order-date">Apartado el: 11/02/2026</div>
+                        </div>
+                        <div class="order-status">Estatus: <span class="pending">Pendiente</span></div>
+                    </article>
+                    <article class="order-item">
+                        <div class="order-icon">🧺</div>
+                        <div>
+                            <div class="order-name">Pedido Marinela - 11/feb</div>
+                            <div class="order-date">Apartado el: 11/02/2026</div>
+                        </div>
+                        <div class="order-status">Estatus: <span class="pending">Pendiente</span></div>
+                    </article>
+                    <article class="order-item">
+                        <div class="order-icon">🧺</div>
+                        <div>
+                            <div class="order-name">Pedido Barcel - 11/feb</div>
+                            <div class="order-date">Apartado el: 11/02/2026</div>
+                        </div>
+                        <div class="order-status">Estatus: <span class="pending">Pendiente</span></div>
+                    </article>
+                    <article class="order-item">
+                        <div class="order-icon">🧺</div>
+                        <div>
+                            <div class="order-name">Pedido Bimbo - 8/ene</div>
+                            <div class="order-date">Apartado el: 08/01/2026</div>
+                        </div>
+                        <div class="order-status">Estatus: Completado</div>
+                    </article>
+                    <article class="order-item">
+                        <div class="order-icon">🧺</div>
+                        <div>
+                            <div class="order-name">Pedido Marinela - 8/ene</div>
+                            <div class="order-date">Apartado el: 08/01/2026</div>
+                        </div>
+                        <div class="order-status">Estatus: Completado</div>
+                    </article>
+                    <article class="order-item">
+                        <div class="order-icon">🧺</div>
+                        <div>
+                            <div class="order-name">Pedido Barcel - 8/ene</div>
+                            <div class="order-date">Apartado el: 08/01/2026</div>
+                        </div>
+                        <div class="order-status">Estatus: Completado</div>
+                    </article>
+                </div>
+
+                <aside class="details-panel">
+                    <h2>Detalles del pedido</h2>
+                    <table class="mini-table">
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Proveedor</th>
+                            <th>Costo</th>
+                        </tr>
+                        <tr>
+                            <td><img src="{% static '_img/Donitas.png' %}" alt="Producto pedido"></td>
+                            <td>Donitas</td>
+                            <td>10</td>
+                            <td>Bimbo</td>
+                            <td>$20</td>
+                        </tr>
+                    </table>
+                    <div class="total-box">Total a pagar: $200</div>
+                    <div class="details-actions">
+                        <a href="#" class="btn">Cancelar</a>
+                        <a href="#" class="btn blue">Confirmar</a>
+                    </div>
+                </aside>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

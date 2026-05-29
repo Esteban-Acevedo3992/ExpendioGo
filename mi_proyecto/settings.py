@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'expendiogo_db',            # Nombre de la base de datos
         'USER': 'postgres',                 # usuario maestro
         'PASSWORD': 'BanK3992tO35',         # contraseña PostgreSQL
-        'HOST': 'localhost',
+        'HOST': 'localhost',            # Dirección IP del servidor PostgreSQL 100.127.182.101
         'PORT': '5432',                     # Puerto para PostgreSQL
     }
 }
