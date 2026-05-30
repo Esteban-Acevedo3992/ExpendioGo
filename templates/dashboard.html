@@ -13,6 +13,8 @@
         <header class="topbar">
             <img class="logo" src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo">
             <div class="brand">Expendio<span>Go</span></div>
+           <p class="bienvenida">Bienvenido, {{ cliente.nombre_cliente }}</p>
+           <button class="logout-btn" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
         </header>
 
         <aside class="sidebar">
@@ -33,21 +35,33 @@
                     </div>
                 </article>
 
-                <article class="card">
-                    <div class="card-title">Pedidos pendientes</div>
-                    <div class="card-body">
-                        <div class="big-icon">🔔</div>
-                        <div class="card-value">¡5 pedidos!</div>
+               <article class="card">
+                <div class="card-title">Pedidos pendientes</div>
+                <div class="card-body">
+                    <div class="big-icon">🔔</div>
+                    <div class="card-value">
+                        {% if pedidos_pendientes > 0 %}
+                            ¡{{ pedidos_pendientes }} pedido{{ pedidos_pendientes|pluralize }}!
+                        {% else %}
+                            Sin pedidos pendientes ✅
+                        {% endif %}
                     </div>
-                </article>
+                </div>
+            </article>
 
                 <article class="card">
-                    <div class="card-title">Productos bajos</div>
-                    <div class="card-body">
-                        <div class="big-icon">⚠</div>
-                        <div class="card-text">3 productos por<br>agotarse</div>
+                <div class="card-title">Productos bajos</div>
+                <div class="card-body">
+                    <div class="big-icon">⚠</div>
+                    <div class="card-text">
+                        {% if cantidad_bajos > 0 %}
+                            {{ cantidad_bajos }} producto{{ cantidad_bajos|pluralize }} por agotarse
+                        {% else %}
+                            Stock en buen nivel ✅
+                        {% endif %}
                     </div>
-                </article>
+                </div>
+            </article>
             </section>
 
             <section class="chart-card">

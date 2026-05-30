@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpendioGo - Mis Apartados</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <img class="logo" src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo">
+            <div class="brand">Expendio<span>Go</span></div>
+            <p class="bienvenida">Hola, {{ cliente.nombre_cliente }}</p>
+            <button class="logout-btn" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+        </header>
+
+       <aside class="sidebar">
+             <a class="nav-link " href="{% url 'catalogo' %}"><div class="icon-box">⌂</div><span class="label">Inicio</span></a>
+             <a class="nav-link active" href="{% url 'mis_encargos' %}"><div class="icon-box">🛒</div><span class="label">Apartado</span></a>
+        </aside>
+
+        <main class="content">
+            <h1>Mis Apartados</h1>
+
+            {% if encargos %}
+            <div class="order-list">
+                {% for encargo in encargos %}
+                <article class="order-item">
+                    <div class="order-icon">🧺</div>
+                    <div>
+                        <div class="order-name">
+                            {{ encargo.producto.nombre_producto }} x{{ encargo.cantidad }}
+                        </div>
+                        <div class="order-date">
+                            Apartado el: {{ encargo.fecha_encargo|date:"d/m/Y" }}
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-size:16px; font-weight:bold; margin-bottom:6px;">
+                            ${{ encargo.total_venta }}
+                        </div>
+                        <div class="order-status">
+                            Estatus:
+                            {% if encargo.estatus == 'pendiente' %}
+                                <span class="pending">Pendiente</span>
+                            {% elif encargo.estatus == 'entregado' %}
+                                <span class="entregado">Entregado</span>
+                            {% else %}
+                                <span class="cancelado">Cancelado</span>
+                            {% endif %}
+                        </div>
+
+                        <!-- Botón solo aparece si está pendiente -->
+                        {% if encargo.estatus == 'pendiente' %}
+                        <form method="POST" action="{% url 'cancelar_encargo' encargo.encargo_id %}" style="margin-top:8px;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-cancelar"
+                                onclick="return confirm('¿Cancelar este apartado?')">
+                                Cancelar
+                            </button>
+                        </form>
+                        {% endif %}
+
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            {% else %}
+            <div style="text-align:center; margin-top:60px; color:#aaa;">
+                <div style="font-size:60px;">📦</div>
+                <p style="font-size:20px;">No tienes apartados aún</p>
+                <a href="{% url 'catalogo' %}" class="btn" style="margin-top:16px; display:inline-block;">
+                    Ver productos
+                </a>
+            </div>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>

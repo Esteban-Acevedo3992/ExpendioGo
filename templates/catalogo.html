@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpendioGo - Catálogo</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="app">
+        <header class="topbar">
+            <img class="logo" src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo">
+            <div class="brand">Expendio<span>Go</span></div>
+            <p class="bienvenida">Hola, {{ cliente.nombre_cliente }}</p>
+            <button class="logout-btn" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+        </header>
+
+        <aside class="sidebar">
+             <a class="nav-link active" href="{% url 'catalogo' %}"><div class="icon-box">⌂</div><span class="label">Inicio</span></a>
+             <a class="nav-link" href="{% url 'mis_encargos' %}"><div class="icon-box">🛒</div><span class="label">Apartado</span></a>
+        </aside>
+
+        <main class="content">
+            <!-- Buscador -->
+            <div style="margin-bottom: 24px;">
+                <input type="text" id="buscador" placeholder="🔍 Buscar producto..."
+                    onkeyup="filtrarProductos()"
+                    style="width:350px; padding:12px 18px; border-radius:20px; border:2px solid #333; font-size:16px; background:#111; color:white;">
+            </div>
+
+            <!-- Categorías -->
+            <h2 style="font-size:22px; margin-bottom:16px;">Categorías</h2>
+            <div class="categorias-grid">
+                {% for categoria in categorias %}
+                <div class="categoria-item" onclick="filtrarPorCategoria('{{ categoria }}')">
+                    <div class="categoria-icono">🏷️</div>
+                    <span>{{ categoria }}</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Productos -->
+            <h2 style="font-size:22px; margin: 28px 0 16px;">Menú</h2>
+            <div class="productos-grid" id="lista-productos">
+                {% for producto in productos %}
+                <div class="producto-card" data-nombre="{{ producto.nombre_producto|lower }}" data-categoria="{{ producto.categoria }}">
+                    {% if producto.foto %}
+                        <img src="{{ producto.foto.url }}" alt="{{ producto.nombre_producto }}">
+                    {% else %}
+                        <div class="sin-foto">📦</div>
+                    {% endif %}
+                    <span class="producto-nombre">{{ producto.nombre_producto }}</span>
+                    <span class="producto-precio">${{ producto.precio_venta }}</span>
+                    <button class="btn-agregar-encargo" onclick="abrirModalEncargo(
+                        '{{ producto.producto_id }}',
+                        '{{ producto.nombre_producto }}',
+                        '{{ producto.precio_venta }}'
+                    )">+ Agregar</button>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para agregar encargo -->
+    <div id="modal-encargo" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <h2 id="modal-encargo-titulo">Agregar al apartado</h2>
+            <p id="modal-encargo-precio" style="color:#356fdb; font-size:18px;"></p>
+            <form method="POST" action="{% url 'agregar_encargo' %}">
+                {% csrf_token %}
+                <input type="hidden" name="producto_id" id="encargo-producto-id">
+                <div class="modal-field">
+                    <label>Cantidad:</label>
+                    <input type="number" name="cantidad" id="encargo-cantidad" min="1" value="1" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn-cancelar" onclick="cerrarModalEncargo()">Cancelar</button>
+                    <button type="submit" class="btn-guardar">Apartar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function abrirModalEncargo(id, nombre, precio) {
+            document.getElementById('modal-encargo-titulo').innerText = nombre;
+            document.getElementById('modal-encargo-precio').innerText = '$' + precio + ' por unidad';
+            document.getElementById('encargo-producto-id').value = id;
+            document.getElementById('encargo-cantidad').value = 1;
+            document.getElementById('modal-encargo').style.display = 'flex';
+        }
+
+        function cerrarModalEncargo() {
+            document.getElementById('modal-encargo').style.display = 'none';
+        }
+
+        function filtrarProductos() {
+            const texto = document.getElementById('buscador').value.toLowerCase();
+            document.querySelectorAll('.producto-card').forEach(card => {
+                card.style.display = card.dataset.nombre.includes(texto) ? 'flex' : 'none';
+            });
+        }
+
+        function filtrarPorCategoria(categoria) {
+            document.querySelectorAll('.producto-card').forEach(card => {
+                card.style.display = card.dataset.categoria === categoria ? 'flex' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

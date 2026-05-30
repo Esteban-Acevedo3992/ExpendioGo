@@ -13,6 +13,8 @@
         <header class="topbar">
             <img class="logo" src="{% static '_img/logo.png' %}" alt="Logo ExpendioGo">
             <div class="brand">Expendio<span>Go</span></div>
+          <p class="bienvenida">  </p> <button class="logout-btn" onclick="window.location.href='{% url 'logout' %}'">Cerrar sesión</button>
+
         </header>
 
         <aside class="sidebar">
@@ -27,79 +29,89 @@
             <h1>Pedidos</h1>
             <section class="orders-layout">
                 <div class="order-list">
-                    <article class="order-item">
-                        <div class="order-icon">🧺</div>
-                        <div>
-                            <div class="order-name">Pedido Bimbo - 11/feb.</div>
-                            <div class="order-date">Apartado el: 11/02/2026</div>
-                        </div>
-                        <div class="order-status">Estatus: <span class="pending">Pendiente</span></div>
-                    </article>
-                    <article class="order-item">
-                        <div class="order-icon">🧺</div>
-                        <div>
-                            <div class="order-name">Pedido Marinela - 11/feb</div>
-                            <div class="order-date">Apartado el: 11/02/2026</div>
-                        </div>
-                        <div class="order-status">Estatus: <span class="pending">Pendiente</span></div>
-                    </article>
-                    <article class="order-item">
-                        <div class="order-icon">🧺</div>
-                        <div>
-                            <div class="order-name">Pedido Barcel - 11/feb</div>
-                            <div class="order-date">Apartado el: 11/02/2026</div>
-                        </div>
-                        <div class="order-status">Estatus: <span class="pending">Pendiente</span></div>
-                    </article>
-                    <article class="order-item">
-                        <div class="order-icon">🧺</div>
-                        <div>
-                            <div class="order-name">Pedido Bimbo - 8/ene</div>
-                            <div class="order-date">Apartado el: 08/01/2026</div>
-                        </div>
-                        <div class="order-status">Estatus: Completado</div>
-                    </article>
-                    <article class="order-item">
-                        <div class="order-icon">🧺</div>
-                        <div>
-                            <div class="order-name">Pedido Marinela - 8/ene</div>
-                            <div class="order-date">Apartado el: 08/01/2026</div>
-                        </div>
-                        <div class="order-status">Estatus: Completado</div>
-                    </article>
-                    <article class="order-item">
-                        <div class="order-icon">🧺</div>
-                        <div>
-                            <div class="order-name">Pedido Barcel - 8/ene</div>
-                            <div class="order-date">Apartado el: 08/01/2026</div>
-                        </div>
-                        <div class="order-status">Estatus: Completado</div>
-                    </article>
+                    {% for encargo in encargos %}
+                    <a href="?encargo_id={{ encargo.encargo_id }}" style="text-decoration:none; color:inherit;">
+                        <article class="order-item {% if encargo_seleccionado and encargo_seleccionado.encargo_id == encargo.encargo_id %}activo{% endif %}">
+                            <div class="order-icon">🧺</div>
+                            <div>
+                                <div class="order-name">
+                                    Encargo #{{ encargo.encargo_id }} - {{ encargo.producto.nombre_producto }}
+                                </div>
+                                <div class="order-date">
+                                    Apartado el: {{ encargo.fecha_encargo|date:"d/m/Y" }}
+                                </div>
+                            </div>
+                            <div class="order-status">
+                                Estatus:
+                                {% if encargo.estatus == 'pendiente' %}
+                                    <span class="pending">Pendiente</span>
+                                {% elif encargo.estatus == 'entregado' %}
+                                    <span class="entregado">Entregado</span>
+                                {% else %}
+                                    <span class="cancelado">Cancelado</span>
+                                {% endif %}
+                            </div>
+                        </article>
+                    </a>
+                    {% empty %}
+                        <p>No hay encargos registrados</p>
+                    {% endfor %}
                 </div>
 
                 <aside class="details-panel">
-                    <h2>Detalles del pedido</h2>
-                    <table class="mini-table">
-                        <tr>
-                            <th>Foto</th>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>Proveedor</th>
-                            <th>Costo</th>
-                        </tr>
-                        <tr>
-                            <td><img src="{% static '_img/Donitas.png' %}" alt="Producto pedido"></td>
-                            <td>Donitas</td>
-                            <td>10</td>
-                            <td>Bimbo</td>
-                            <td>$20</td>
-                        </tr>
-                    </table>
-                    <div class="total-box">Total a pagar: $200</div>
-                    <div class="details-actions">
-                        <a href="#" class="btn">Cancelar</a>
-                        <a href="#" class="btn blue">Confirmar</a>
-                    </div>
+                    {% if encargo_seleccionado %}
+                        <h2>Detalles del encargo #{{ encargo_seleccionado.encargo_id }}</h2>
+                        <table class="mini-table">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Cliente</th>
+                                <th>Total</th>
+                            </tr>
+                            <tr>
+                                <td>{{ encargo_seleccionado.producto.nombre_producto }}</td>
+                                <td>{{ encargo_seleccionado.cantidad }}</td>
+                                <td>{{ encargo_seleccionado.cliente.nombre_cliente }}</td>
+                                <td>${{ encargo_seleccionado.total_venta }}</td>
+                            </tr>
+                        </table>
+
+                        <div class="total-box">Total a pagar: ${{ encargo_seleccionado.total_venta }}</div>
+
+                        <div class="details-actions">
+                            {% if encargo_seleccionado.estatus == 'pendiente' %}
+                                <!-- Botón Cancelar -->
+                                <form method="POST" action="{% url 'cambiar_status_encargo' encargo_seleccionado.encargo_id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="status" value="cancelado">
+                                    <button type="submit" class="btn"
+                                        onclick="return confirm('¿Cancelar este encargo?')">
+                                        Cancelar
+                                    </button>
+                                </form>
+
+                                <!-- Botón Confirmar entrega -->
+                                <form method="POST" action="{% url 'cambiar_status_encargo' encargo_seleccionado.encargo_id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="status" value="entregado">
+                                    <button type="submit" class="btn blue"
+                                        onclick="return confirm('¿Confirmar entrega?')">
+                                        Confirmar entrega
+                                    </button>
+                                </form>
+
+                            {% elif encargo_seleccionado.estatus == 'entregado' %}
+                                <p style="color:green; font-weight:bold;">✅ Encargo entregado</p>
+
+                            {% elif encargo_seleccionado.estatus == 'cancelado' %}
+                                <p style="color:red; font-weight:bold;">❌ Encargo cancelado</p>
+                            {% endif %}
+                        </div>
+
+                    {% else %}
+                        <h2>Detalles del pedido</h2>
+                        <p>Selecciona un encargo de la lista para ver sus detalles.</p>
+                    {% endif %}
                 </aside>
             </section>
         </main>
